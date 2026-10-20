@@ -4,6 +4,12 @@
 
 An 8 × 8 × 8 browser chess simulation where two kings coordinate autonomous pieces. All piece models are made from cubes. The game is entirely self-contained in `index.html`; GitHub Pages serves it directly.
 
+## Diagonal start (implemented)
+
+Both 16-piece armies start diagonally across the cube. White's back rank and pawns occupy Y=4, Z=1–2; Black's mirrored ranks occupy Y=5, Z=7–8 (1-indexed coordinates). The kings start at **e4·1** and **d5·8**, differing along X, Y and Z. Adjacent Y files keep pawn captures possible under the existing +Z/−Z pawn rule. This is not a far-corner setup, which would require reworking pawn movement. The change is live in `index.html`; the game still begins with 32 pieces.
+
+An expanded game with **24 pieces per side (48 total)** and four distinct new role classes is proposed, **not yet implemented**. See [Expansion Design](EXPANSION-DESIGN.md). Adding ten total classes will require five-bit occupancy encoding and new game/VR legality tests.
+
 ## Piece colour key
 
 | Role | Colour | White army | Black army |
