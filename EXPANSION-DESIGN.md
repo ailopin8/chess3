@@ -1,5 +1,5 @@
 # CHESS³: Diagonal Deployment and Relational Army Expansion
-**Status:** Diagonal deployment is implemented on `main`. Additional characters described below are proposals, NOT currently playable.
+**Status (20 Oct 2026):** The 48-piece expansion with Warden, Weaver, Riftwalker and Oracle is now implemented in `index.html` on `main`. This file retains the original design rationale; the README documents the final tested release.
 
 ## Purpose
 Make the king a strategic controller of an adaptive multi-agent army on a 512-cell 3D lattice. Give units complementary movement, roles, and explicit relationships so coordination and emergent strategies arise from interacting capabilities, rather than arbitrary large armies.
@@ -11,8 +11,8 @@ Make the king a strategic controller of an adaptive multi-agent army on a 512-ce
 - Critically, pawn Y coordinates differ by one, making diagonally-forward captures possible. Moving both armies to far-opposite XYZ corners under the current pawn rules would prevent most pawns from meeting. Opposed corners would require a different pawn vector and therefore a new variant.
 - The original six piece classes and king-only command system are unchanged.
 
-## Recommended Phase 1 — 48 pieces, not yet implemented
-**24 per side: 16 current pieces + 8 new pieces (two each of four new classes).**
+## Implemented Phase 1 — 48 pieces
+**24 per side: 16 original pieces + 8 added support pieces (two each of four new classes).**
 That occupies 48 / 512 = 9.375% of the 3D cells at the start. For comparison, the current 32 / 512 = 6.25%. Cell density is not the same as tactical branching factor; measure legal move count, checks and time per royal dispatch after adding roles.
 
 | New role | Per side | Prototype colour | Movement identity | Unique skill / relationship |
@@ -63,3 +63,12 @@ The existing board uses **4 bits per cell** (one side bit plus three piece-type 
 5. Test complete matches, move legality, export/import compatibility, desktop/mobile input, 2-eye WebXR rendering, and actual Meta Quest performance after each stage.
 
 **Do not** adopt 32 per side until telemetry demonstrates the king heuristics still produce meaningful engagements and the VR renderer holds a stable frame rate.
+
+## Local acceptance tests for implementation
+
+- 10 unique roles, 48 starting units, balanced and nonoverlapping on 512 cells.
+- Movement tests: W 6 axial neighbors, V 24 reachable two-cell face-diagonal destinations on an open center board (intermediate blocking validated), F 24 unblocked jumps, O 8 adjacent space diagonals; original pawns, rooks, knights and king-safety constraints also checked.
+- Skills: GUARD blocks a capture then expires correctly; LINK creates a timed edge; FORECAST creates reply-threat predictions; skill actions consume full turns and impose a cooldown.
+- Browser run: 48 autonomous dispatches with matching king logs; LINK and FORECAST chosen autonomously. JSON version-4 export/import and legacy snapshot restoration tested; no page errors.
+- Stereo mock: distinct left and right WebXR viewports each drew geometry, with a single framebuffer clear per frame. Physical Quest headset verification remains uncompleted.
+- The GitHub Pages public runtime was not accessible through the available inspection tools; this is not a claim of publicly confirmed VR functionality.
