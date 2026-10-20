@@ -42,6 +42,17 @@ A scripted two-eye WebXR simulation confirmed distinct left and right viewport d
 
 If the game appears stale, reopen it using [this cache-busting link](https://ailopin8.github.io/chess3/?v=stereo-colors-2). Exit and re-enter immersive VR to restart the XR session. If one eye remains dark, note which eye and whether ordinary Quest Browser menus also show the problem.
 
+## Spatial manipulation / cube size (2026-10-20)
+
+CHESS³ now has a **SPACE MANIPULATOR** in the Royal Command Centre. This moves and resizes the *displayed* 8 × 8 × 8 space while preserving the underlying chess rules.
+
+- **Desktop:** select ORBIT or MOVE before dragging the cube. Use the **Cube size / spatial scale** slider to adjust the space from **35% to 300%**. Use the six positional arrow controls for left/right/up/down/near/far. **RESET SPACE & VIEW** restores the default transform. Shift+wheel adjusts spatial scale; ordinary wheel controls camera zoom.
+- **Touchscreen:** select MOVE or ORBIT; drag with one finger. Pinch with two fingers to change scale and translate.
+- **Quest 3S controllers:** hold a single grip to move the whole game cube. Hold **both grips**, then spread or close controllers to scale it; moving both controllers translates the cube and twisting them rotates it. **Left thumbstick** moves the cube horizontally or nearer/farther. **Right thumbstick** rotates and tilts. Press and hold the right thumbstick while moving it vertically to resize. Press **both thumbsticks** to reset.
+- **Game JSON:** Save includes the spatial display scale, desktop pan and VR pose and restores them on import.
+
+A standalone JavaScript test verified scale clamps, 2D movement, reset, both-grip scale and translation, single-grip translation, and preservation of the stereo rendering path. Browser rendering and physical headset testing still require validation on a device.
+
 ## Hosting
 
 This is a single-page site: publish from the `main` branch root using GitHub Pages. No Jekyll theme processing, server, package installation or API key is required. The visual style is inspired by the GitHub Pages Hacker theme, adapted directly in its CSS.
